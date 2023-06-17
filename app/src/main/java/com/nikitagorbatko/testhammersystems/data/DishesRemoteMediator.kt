@@ -20,6 +20,10 @@ class DishesRemoteMediator(
     private val dishesDatabase: DishesDatabase
 ) : RemoteMediator<Int, DishDbo>() {
 
+    override suspend fun initialize(): InitializeAction {
+        return InitializeAction.SKIP_INITIAL_REFRESH
+    }
+
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, DishDbo>
